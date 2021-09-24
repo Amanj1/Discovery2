@@ -53,7 +53,7 @@ The UML (Unified Modeling Language) diagram displays the steps in the pipeline. 
 
 You will need to download several databses to be able to run the pipeline for five softwares mentioned below.
 
-#####1. Kraken2 
+##### 1. Kraken2 
 Requires to download a database that consist of viruses, bacteria and fungi. 
 
 2. FastViromeExplorer
