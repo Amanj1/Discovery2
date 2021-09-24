@@ -29,6 +29,7 @@ The UML (Unified Modeling Language) diagram displays the steps in the pipeline. 
  - [R](https://www.r-project.org/)
  - [virfinder](https://github.com/jessieren/VirFinder)
  - [FragGeneScan](https://omics.informatics.indiana.edu/FragGeneScan/)
+ - [BLAST blastdbcmd](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 
 #### Software versions currently tested on
 | Software   | Version |
@@ -46,5 +47,33 @@ The UML (Unified Modeling Language) diagram displays the steps in the pipeline. 
 | R           | 0       |
 | virfinder   | 0       |
 | FragGeneScan| 0       |
+| BLAST       | 0       |
+
+## Database requirements 
+
+You will need to download several databses to be able to run the pipeline for five softwares mentioned below.
+
+#####1. Kraken2 
+Requires to download a database that consist of viruses, bacteria and fungi. 
+
+2. FastViromeExplorer
+FastViromeExplorer requries a viruslist and a kallisto index.
+
+3. Diamond blastx
+Diamond requries a nr database in dmnd format, a protein accession to taxid and taxonomy nodes. 
+
+4. blastdbcmd
+Requires a BLAST databse for latest nr sequences (all sequences).
+
+5. contig classifer
+Requries a complete taxonomic lineage to matched sequences in the Diamond blastx results
+
+
+
+
+
+
+
+
 
 
