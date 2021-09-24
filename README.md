@@ -9,6 +9,8 @@ In addition, a list of sequences that do not match anything in the databases use
 This pipeline is divided into two parallel runs. One is for reads analysis and other are after assembly data is produced and analyzed.
 
 ![alt text](/UML_diagram/discovery2.png)
+
+
 The UML (Unified Modeling Language) diagram displays the steps in the pipeline. "Preprocessing reads" is the input data and the data should be trimmed, quality checked and human DNA/reads should be filtered out before running the pipeline. Everything below labeled "tax reads" are reads based analysis for matching sequences using different methods. The rest are analysis based on assembly data. Where we include different detection method. In this pipeline I have focused mostly on extending the Diamond blastx run with a classifier and creating HTML interactive tables and tsv files. Everything below "tax contigs diamond" are processes that are extensions for the Diamond blastx analysis to make it more presentable for the user.
 
 ## Software requirements 
