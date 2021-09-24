@@ -36,27 +36,37 @@ The UML (Unified Modeling Language) diagram displays the steps in the pipeline. 
 #### Software versions currently tested on
 | Software   | Version |
 | --------   | ------- |
-| Nextflow   | 0       |
-| Python3    | 0       |
-| Seqtk      | 0       |
-| Megahit    | 0       |
-| BBmap      | 0       |
-| Samtools   | 0       |
-| MetaPhlAn2 | 0       |
-| Kraken2    | 0       |
-| FastViromeExplorer | 0       |
-| Kallisto    | 0       |
-| R           | 0       |
-| virfinder   | 0       |
-| FragGeneScan| 0       |
-| BLAST       | 0       |
+| Nextflow   | 19.07.0.5106 |
+| Python3    | 3.6.9   |
+| Seqtk      | 1.3-r106|
+| Megahit    | v1.2.8  |
+| BBmap      | 38.68   |
+| Samtools   | 1.9     |
+| MetaPhlAn2 | 2.7.7   |
+| Kraken2    | 2.0.8-beta |
+| FastViromeExplorer | 1.3 |
+| Kallisto    | v0.43.1 |
+| Diamond Blastx | 2.0.6 |
+| R           | 3.6.1   |
+| virfinder   | 1.1     |
+| FragGeneScan| 1.31    |
+| BLAST       | 2.5.0+  |
 
 ## Database requirements 
 
 You will need to download several databses to be able to run the pipeline for five softwares mentioned below.
 
 #### 1. Kraken2 
-Requires to download a database that consist of viruses, bacteria and fungi. 
+Kraken2 requires to download a database that consist of viruses, bacteria and fungi (based on what we worked on).  
+How to build database for kraken2:
+```
+kraken2-build --download-taxonomy --db <database name>
+kraken2-build --download-library bacteria --db <database name>
+kraken2-build --download-library viral --db <database name>
+kraken2-build --download-library fungi --db <database name>
+kraken2-build --build --db <database name> --threads <number of threads>
+```
+The name you choose for the database should be exactly the same for all the commands above. If you want to build a different database you can open the kraken2 link in "software requirements".
 
 #### 2. FastViromeExplorer
 FastViromeExplorer requries a viruslist and a kallisto index.
