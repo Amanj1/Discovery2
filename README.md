@@ -56,16 +56,16 @@ You will need to download several databses to be able to run the pipeline for fi
 #### 1. Kraken2 
 Requires to download a database that consist of viruses, bacteria and fungi. 
 
-2. FastViromeExplorer
+#### 2. FastViromeExplorer
 FastViromeExplorer requries a viruslist and a kallisto index.
 
-3. Diamond blastx
+#### 3. Diamond blastx
 Diamond requries a nr database in dmnd format, a protein accession to taxid and taxonomy nodes. 
 
-4. blastdbcmd
+#### 4. blastdbcmd
 Requires a BLAST databse for latest nr sequences (all sequences).
 
-5. contig classifer
+#### 5. contig classifer
 Requries a complete taxonomic lineage to matched sequences in the Diamond blastx results
 
 
