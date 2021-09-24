@@ -9,3 +9,42 @@ In addition, a list of sequences that do not match anything in the databases use
 This pipeline is divided into two parallel runs. One is for reads analysis and other are after assembly data is produced and analyzed.
 
 ![alt text](/UML_diagram/discovery2.png)
+The UML (Unified Modeling Language) diagram displays the steps in the pipeline. "Preprocessing reads" is the input data and the data should be trimmed, quality checked and human DNA/reads should be filtered out before running the pipeline. Everything below labeled "tax reads" are reads based analysis for matching sequences using different methods. The rest are analysis based on assembly data. Where we include different detection method. In this pipeline I have focused mostly on extending the Diamond blastx run with a classifier and creating HTML interactive tables and tsv files. Everything below "tax contigs diamond" are processes that are extensions for the Diamond blastx analysis to make it more presentable for the user.
+
+## Software requirements 
+ Software required to run all processes in the pipeline.
+ - [Nextflow DSL1](https://www.nextflow.io/)
+ - [Python3](https://www.python.org/downloads/)
+ - [megahit](https://github.com/voutcn/megahit)
+ - [seqtk](https://github.com/lh3/seqtk)
+ - [BBmap tools](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/installation-guide/)
+    - bbwrap.sh
+    - pileup.sh
+ - [samtools](http://www.htslib.org/)
+ - [metaphlan2](http://huttenhower.sph.harvard.edu/metaphlan2)
+ - [kraken2](https://ccb.jhu.edu/software/kraken2/)
+ - [FastViromeExplorer](https://fastviromeexplorer.readthedocs.io/en/latest/)
+ - [kallisto](https://github.com/pachterlab/kallisto)
+ - [diamond blastx](https://github.com/bbuchfink/diamond)
+ - [R](https://www.r-project.org/)
+ - [virfinder](https://github.com/jessieren/VirFinder)
+ - [FragGeneScan](https://omics.informatics.indiana.edu/FragGeneScan/)
+
+#### Software versions currently tested on
+| Software   | Version |
+| --------   | ------- |
+| Nextflow   | 0       |
+| Python3    | 0       |
+| Seqtk      | 0       |
+| Megahit    | 0       |
+| BBmap      | 0       |
+| Samtools   | 0       |
+| MetaPhlAn2 | 0       |
+| Kraken2    | 0       |
+| FastViromeExplorer | 0       |
+| Kallisto    | 0       |
+| R           | 0       |
+| virfinder   | 0       |
+| FragGeneScan| 0       |
+
+
