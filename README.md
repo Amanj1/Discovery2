@@ -26,7 +26,7 @@ The UML (Unified Modeling Language) diagram displays the steps in the pipeline. 
  - [kallisto](https://github.com/pachterlab/kallisto)
  - [diamond blastx](https://github.com/bbuchfink/diamond)
  - [R](https://www.r-project.org/)
- - [virfinder](https://github.com/jessieren/VirFinder)
+    - [virfinder](https://github.com/jessieren/VirFinder)
  - [FragGeneScan](https://omics.informatics.indiana.edu/FragGeneScan/)
  - [BLAST blastdbcmd](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 
@@ -45,13 +45,16 @@ The UML (Unified Modeling Language) diagram displays the steps in the pipeline. 
 | Kallisto    | v0.43.1 |
 | Diamond Blastx | 2.0.6 |
 | R           | 3.6.1   |
-| virfinder   | 1.1     |
 | FragGeneScan| 1.31    |
 | BLAST       | 2.5.0+  |
 
+| R-package  | Version |
+| --------   | ------- |
+| virfinder  | 1.1     |
+
 ## Database requirements 
 
-You will need to download several databses to be able to run the pipeline for five softwares mentioned below.
+You will need to download several databses to be able to run the pipeline for five softwares mentioned below. It may be a good idea to create a folder for each database.
 
 #### 1. Kraken2 
 Kraken2 requires to download a database that consist of viruses, bacteria and fungi (based on what we worked on).  
@@ -70,12 +73,91 @@ FastViromeExplorer requries a viruslist and a kallisto index.
 
 #### 3. Diamond blastx
 Diamond requries a nr database in dmnd format, a protein accession to taxid and taxonomy nodes. 
+First you will need to download a compressed file taxdump.gz.tar from this website.
+
+```
+https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump.tar.gz
+```
+You will also need to protein accession to taxid in the link below.
+
+```
+https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/prot.accession2taxid.gz
+```
+
+When running Diamond blastx we are using the nr-protein (Non-redundant protein sequences) database. The link below is where you can download the fasta version of nr.
+```
+https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz
+```
+or download it through terminal.
+```
+wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz
+```
+When you have the nr file you will need to run the following command below.
+```
+diamond makedb --in nr.gz -d nr
+```
+Final step to include taxnodes in the database. "pathwayToFile" should be the full path to the file.
+```
+diamond getseq --db diamond/nr.dmnd | diamond makedb --db nr.dmnd --taxonmap pathwayToFile/prot.accession2taxid --taxonnodes pathwayToFile/nodes.dmp
+```
 
 #### 4. blastdbcmd
-Requires a BLAST databse for latest nr sequences (all sequences).
+Requires a BLAST databse for latest nr sequences (all sequences). In this step we will use the same nr.fasta we downloaded for 3.Diamond.
+Run the following command below and replace <reference.fasta> with the nr fasta file.
+
+```
+makeblastdb -in <reference.fasta> -dbtype prot -parse_seqids -out nr -title "nr"
+```
 
 #### 5. contig classifer
-Requries a complete taxonomic lineage to matched sequences in the Diamond blastx results
+Requries a complete taxonomic lineage to matched sequences in the Diamond blastx results. In the compressed file "new_taxdumps" that we downloaded for Diamond already contains the "fullnamelineage.dmp" for finding complete lineages for Diamond blastx results.
+
+## Configuration file
+In our configuration file "discovery2.config" we can add a profile. Each profile can be customized according to the available resources of your system. You can create your own profile through the following example below which you can find in "discovery2.config" file.
+
+```
+profiles {
+  hamlet {
+    includeConfig 'conf/hamlet.discovery.config'
+  }
+
+/*
+  bianca {
+    includeConfig 'conf/bianca.discovery.config'
+  }
+*/
+
+ othello {
+  includeConfig 'conf/othello.discovery.config'
+ }
+
+}
+```
+Above we can see three profiles. One of them is included in the repository created for Hamlet. You can follow the exemples below on how to modify hamlet and create youre own file and include this later in "discovery2.config" file.
+
+### Database pathways 
+In our configuration file found in conf/hamlet.discovery.config we will need to add all the paths for the databases.
+Below you can see files and folders you will need to add full path to. If it 
+
+```
+ //1. FastViromeExplorer
+ FVE_index='/PathToFile/FastViromeExplorer/ncbi-virus-kallisto-index-k31.idx'
+ FVE_viruslist='/PathToFile/FastViromeExplorer/1.3/ncbi-viruses-list.txt'
+ //2. Kraken2
+ kraken2_db='/PathToFolder/kraken2/210205_bacvirfun'
+ //3. Diamond databases
+ diamond_db='/PathToFile/diamond/nr.dmnd'
+ diamond_taxonmap='/PathToFile/ncbi_taxonomy/prot.accession2taxid
+ diamond_taxonnodes='/PathToFile/ncbi_taxonomy/nodes.dmp'
+ ncbi_full_lineage='/PathToFile/ncbi_taxonomy/fullnamelineage.dmp
+```
+If you scroll down you can find the process for contig classification here you will need to add the path for the nr database that you created in "4. blastdbcmd".
+```
+    withName: tax_contigs_classifier{
+beforeScript='export BLASTDB=/PathToFolder/nr'
+    }
+}
+```
 
 
 
