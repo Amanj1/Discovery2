@@ -5,8 +5,6 @@ How to run:
 nextflow -C discovery.nf.config run discovery.nf --fastq_files preprocessing -profile hamlet
 */
 
-params.html_dir='input_html'
-params.fastq_dir='preprocessing'
 fastq_files = Channel.fromFilePairs("${params.fastq_dir}/**/*_{1,2,unpaired}.fq.gz",size:3)
 html_files = Channel.fromFilePairs("${params.html_dir}/html_{start,end}.txt",size:2)
 
