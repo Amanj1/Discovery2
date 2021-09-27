@@ -135,6 +135,20 @@ profiles {
 ```
 Above we can see three profiles. One of them is included in the repository created for Hamlet. You can follow the exemples below on how to modify hamlet and create youre own file and include this later in "discovery2.config" file.
 
+In the configuration file "discovery2.config" we also have parameters that are used during the pipeline run.
+
+```
+/* Pipeline running parameters */
+params{
+  project_id='P12653'
+  min_ctg_size=200
+  publish_base_dir='discovery'
+  html_dir='input_html'
+  fastq_dir='preprocessing'
+}
+```
+"min_ctg_size" is value for the minimum nucleotide sequence length after assemble run. The length filters out sequence size below the mimum value set in "min_ctg_size". fastq_dir is the input folder for your "fq.gz" data. The "project_id" should be changed to the label for your project.
+
 ### Database pathways 
 In our configuration file found in conf/hamlet.discovery.config we will need to add all the paths for the databases.
 Below you can see files and folders you will need to add full path to. If it 
@@ -159,10 +173,34 @@ beforeScript='export BLASTDB=/PathToFolder/nr'
 }
 ```
 
+### Software pathways 
+In our configuration file found in conf/hamlet.discovery.config we will need to add all the paths for all softwares if they are not included in your PATH variable or conda environment.
 
+Below you can see an example of a process which requires a path the BBmap tools. The default value for number of threads are 1 in each process if you want to increase you will need to add "cpus = 8" to increase it and in this case it is increased to 8 threads. You will need to do this for all processes if they are not part of your current PATH variable or conda environment. All processes are executed as a child process and adding the line "beforeScript='export PATH="/PathToFolder/tools/BBMap/38.68/bbmap:$PATH"'" does not save it to your PATH variable. It is only temprorary during the pipeline run. 
+```
+    withName: asm_map_reads_to_contigs{
+		beforeScript='export PATH="/PathToFolder/tools/BBMap/38.68/bbmap:$PATH"'
+        cpus = 8
+    }
+```
 
+## Running 
+The user should create a folder one called 'preprocessing' and store all samples there. Each sample should have a folder labeled with sample name / samle ID. Each sample folder should contain paired-end fastq compressed gzip (GNU Zip) files and a file with unpaired reads in fastq gzip format. Each fastq file need to be labled with same sample names but different file extension names "_1.fq.gz", "_2.fq.gz" and "_unpaired.fq.gz" for the pipeline to recognize the sample.
 
+If you prefer "fastq.gz" over "fq.gz" you can change in the line below and this line can be found in begning of "disovery2.nf" file.
 
+```
+fastq_files = Channel.fromFilePairs("${params.fastq_dir}/**/*_{1,2,unpaired}.fq.gz",size:3)
+```
+
+To run the pipeline in command line:
+```
+nextflow -C discovery2.config run discovery2.nr -profile hamlet
+```
+To run the pipeline in command line and resume from cache memory:
+```
+nextflow -C discovery2.config run discovery2.nr -profile hamlet -resume
+```
 
 
 
