@@ -70,6 +70,7 @@ The name you choose for the database should be exactly the same for all the comm
 
 #### 2. FastViromeExplorer
 FastViromeExplorer requries a viruslist and a kallisto index.
+You can read about how to install the database in the link provided in "Software requirements".
 
 #### 3. Diamond blastx
 Diamond requries a nr database in dmnd format, a protein accession to taxid and taxonomy nodes. 
@@ -184,7 +185,7 @@ Below you can see an example of a process which requires a path the BBmap tools.
     }
 ```
 
-## Running 
+## Running pipeline
 The user should create a folder one called 'preprocessing' and store all samples there. Each sample should have a folder labeled with sample name / samle ID. Each sample folder should contain paired-end fastq compressed gzip (GNU Zip) files and a file with unpaired reads in fastq gzip format. Each fastq file need to be labled with same sample names but different file extension names "_1.fq.gz", "_2.fq.gz" and "_unpaired.fq.gz" for the pipeline to recognize the sample.
 
 If you prefer "fastq.gz" over "fq.gz" you can change in the line below and this line can be found in begning of "disovery2.nf" file.
