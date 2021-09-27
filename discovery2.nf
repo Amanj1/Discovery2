@@ -490,7 +490,7 @@ process TSV_to_HTML_each_sample{
   set sample_id, "${sample_id}_all_asm_results.html", "${sample_id}_viral_asm_results.html", "${sample_id}_bacteria_asm_results.html", "${sample_id}_eukaryota_asm_results.html", "${sample_id}_other_asm_results.html" into html_each_out
   script:
 """
-#!/home/amanj/anaconda3/envs/amanjEnv/bin/python3
+#!/usr/bin/python3
 import string
 import csv
 import json
@@ -754,7 +754,7 @@ process simplified_tsv_to_html{
   set "${params.project_id}_all_simplified_asm_results.html", "${params.project_id}_virus_simplified_asm_results.html", "${params.project_id}_bacteria_simplified_asm_results.html", "${params.project_id}_eukaryota_simplified_asm_results.html", "${params.project_id}_other_simplified_asm_results.html" into html_simplifed_out
   script:
 """
-#!/home/amanj/anaconda3/envs/amanjEnv/bin/python3
+#!/usr/bin/python3
 import string
 import csv
 import json
@@ -842,7 +842,7 @@ process collected_tsv_to_html{
   set "${params.project_id}_all_asm_results.html", "${params.project_id}_virus_asm_results.html", "${params.project_id}_bacteria_asm_results.html", "${params.project_id}_eukaryota_asm_results.html", "${params.project_id}_other_asm_results.html" into html_collection_tsv_out
   script:
 """
-#!/home/amanj/anaconda3/envs/amanjEnv/bin/python3
+#!/usr/bin/python3
 import string
 import csv
 import json
