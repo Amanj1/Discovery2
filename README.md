@@ -156,7 +156,7 @@ params{
 
 ### Database pathways 
 In our configuration file found in conf/hamlet.discovery.config we will need to add all the paths for the databases.
-Below you can see files and folders you will need to add full path to. If it 
+Below you can see files and folders you will need to add full path to. 
 
 ```
  //1. FastViromeExplorer
