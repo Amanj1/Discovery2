@@ -10,7 +10,7 @@ This pipeline is divided into two parallel runs. One is for reads analysis and o
 
 The UML (Unified Modeling Language) diagram displays the steps in the pipeline. "Preprocessing reads" is the input data and the data should be trimmed, quality checked and human DNA/reads should be filtered out before running the pipeline. Everything below labeled "tax reads" are reads based analysis for matching sequences using different methods. The rest are analysis based on assembly data. Where we include different detection method. In this pipeline I have focused mostly on extending the Diamond blastx run with a classifier and creating HTML interactive tables and tsv files. Everything below "tax contigs diamond" are processes that are extensions for the Diamond blastx analysis to make it more presentable for the user.
 
-Below we can see one example of a table produced by one of the last processes. Please note that "alignment_len" is based on aminoacid length and "seq_len" is based on the nucleotide sequence length.
+Below we can see one example of a table produced by one of the last processes. Please note that "aln_len" (alignment length) is based on aminoacid length and "contig_len" is based on the nucleotide sequence length.
 
 ![alt text](/UML_diagram/discovery2_html_table.png)
 
