@@ -10,7 +10,7 @@ I'm currently developing a new and improved version of Discovery! This update wi
 
     Multi-threading support for processes that previously ran single-threaded
 
-    More complete and accurate taxonomic data
+    More complete taxonomic data
 
     DS1 -> DSL2 Nextflow
 
