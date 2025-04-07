@@ -1,4 +1,15 @@
 # Discovery2
+ ##Work in Progress
+I'm currently developing a new and improved version of Discovery! This update will include:
+
+    More advanced filtering options
+
+    Enhanced result handling
+
+    Improved performance and faster run times
+
+Once the new version is complete, I’ll provide a link to the updated repository here.
+
 A metagenomic pipeline that identifies common and uncommon variants of microorganisms and viruses. 
 We find the most common by using different nucleotide-based searches/tools against databases and the uncommon by translating nucleotide sequences into 6 frame protein sequences and matching the sequences against the entire nr database. 
 The pipeline also produces a classification of each sequence and an interactive table of all results. In addition, a list of sequences that do not match with anything in the databases used in the pipeline is produced for each sample.
