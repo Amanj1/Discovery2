@@ -12,6 +12,8 @@ I'm currently developing a new and improved version of Discovery! This update wi
 
     More complete and accurate taxonomic data
 
+    DS1 -> DSL2 Nextflow
+
 Once the new version is complete, I’ll share a link to the updated repository here.
 
 A metagenomic pipeline that identifies common and uncommon variants of microorganisms and viruses. 
