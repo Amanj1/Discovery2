@@ -1,5 +1,5 @@
 # Discovery2
- ##Work in Progress
+## Work in Progress
 I'm currently developing a new and improved version of Discovery! This update will include:
 
     More advanced filtering options
